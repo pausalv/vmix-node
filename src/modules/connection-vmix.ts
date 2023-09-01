@@ -12,13 +12,18 @@ export enum ConnectionStates {
   CONNECTED
 }
 
-interface ConnectionVMixEventMap {
-  connect: () => void;
-  disconnect: () => void;
+interface ConnectionVMixEventsVMixMap {
   tally: (tally: string) => void;
   acts: (acts: string) => void;
   version: (version: string) => void;
 }
+
+interface ConnectionVMixEventsConnectionMap {
+  connect: () => void;
+  disconnect: () => void;
+}
+
+interface ConnectionVMixEventMap extends ConnectionVMixEventsVMixMap, ConnectionVMixEventsConnectionMap { }
 
 interface ConnectionVMixOptions {
   debug?: boolean;
@@ -26,6 +31,7 @@ interface ConnectionVMixOptions {
 
 export declare interface ConnectionVMix {
   on<T extends keyof ConnectionVMixEventMap>(eventName: T, listener: ConnectionVMixEventMap[T]): this;
+  once<T extends keyof ConnectionVMixEventMap>(eventName: T, listener: ConnectionVMixEventMap[T]): this;
   emit<T extends keyof ConnectionVMixEventMap>(event: T, ...args: Parameters<ConnectionVMixEventMap[T]>): boolean;
 }
 
@@ -34,6 +40,8 @@ export class ConnectionVMix extends EventEmitter {
   private host: string;
   private port: number;
   private connected: ConnectionStates = ConnectionStates.DISCONNECTED;
+
+  private vMixVersion: string = '';
 
   private options: ConnectionVMixOptions = {
     debug: false
@@ -52,9 +60,16 @@ export class ConnectionVMix extends EventEmitter {
     this.socket.on("data", (data) => {
       this.processData(data);
     });
+
+    this.once("version", (version: string) => {
+      this.vMixVersion = version;
+    });
   }
 
   public connect(): void {
+    if (this.connected == ConnectionStates.CONNECTED) {
+      return;
+    }
     this.socket.connect(this.port, this.host, () => {
       this.connected = ConnectionStates.CONNECTED;
       this.emit("connect");
@@ -64,6 +79,10 @@ export class ConnectionVMix extends EventEmitter {
 
   public async connectAsync(): Promise<void> {
     return new Promise((resolve, reject) => {
+      if (this.connected == ConnectionStates.CONNECTED) {
+        resolve();
+        return;
+      }
       this.socket.connect(this.port, this.host, () => {
         this.connected = ConnectionStates.CONNECTED;
         this.emit("connect");
@@ -90,6 +109,21 @@ export class ConnectionVMix extends EventEmitter {
       });
     });
   }
+
+  public async getTallyAsync(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.once("tally", (tally: string) => {
+        resolve(tally);
+      });
+      this.sendCommand("TALLY");
+    });
+  }
+
+  public getVMixVersion(): string {
+    return this.vMixVersion;
+  }
+
+
 
   public isConnected(): boolean {
     return this.connected == ConnectionStates.CONNECTED;
