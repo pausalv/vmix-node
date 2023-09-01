@@ -10,7 +10,7 @@ npm install vmix-node
 
 # Quick Start
 
-```javascript
+```typescript
 import { ConnectionVMix } from "vmix-node";
 
 // Create a new connection to vMix
@@ -43,3 +43,14 @@ vMix.on("tally", (tally: string) => {
   vMix.subscribe("TALLY");
 })();
 ```
+
+# Implemented Commands
+
+- [x] VERSION
+- [x] TALLY
+- [x] ACTS
+- [x] SUBSCRIBE
+- [x] UNSUBSCRIBE
+- [ ] FUNCTION
+- [ ] XML
+- [ ] XMLTEXT
