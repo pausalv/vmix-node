@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "build": "tsup",
-    "test": "jest"
+    "buld-test": "npm run build && npm run test",
+    "test": "jest",
+    "docs": "typedoc"
   },
   "keywords": [
     "vmix",
