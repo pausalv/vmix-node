@@ -62,11 +62,33 @@ export class ConnectionVMix extends EventEmitter {
     });
   }
 
+  public async connectAsync(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.socket.connect(this.port, this.host, () => {
+        this.connected = ConnectionStates.CONNECTED;
+        this.emit("connect");
+        this.options.debug && console.log("Connected to vMix");
+        resolve();
+      });
+    });
+  }
+
   public disconnect(): void {
     this.socket.end();
     this.connected = ConnectionStates.DISCONNECTED;
     this.emit("disconnect");
     this.options.debug && console.log("Disconnected from vMix");
+  }
+
+  public async disconnectAsync(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.socket.end(() => {
+        this.connected = ConnectionStates.DISCONNECTED;
+        this.emit("disconnect");
+        this.options.debug && console.log("Disconnected from vMix");
+        resolve();
+      });
+    });
   }
 
   public isConnected(): boolean {
