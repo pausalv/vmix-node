@@ -24,6 +24,10 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
+    "typedoc": "^0.25.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "net": "^1.0.2"
   }
 }
