@@ -2,6 +2,8 @@ import { Socket } from "net";
 
 import { EventEmitter } from 'node:events';
 
+import { Tally, TallyArray } from "../commands/tally";
+
 const DEFAULT_HOST = "localhost";
 const DEFAULT_PORT = 8099;
 
@@ -12,8 +14,10 @@ export enum ConnectionStates {
   CONNECTED
 }
 
+
+
 interface ConnectionVMixEventsVMixMap {
-  tally: (tally: string) => void;
+  tally: (tally: TallyArray) => void;
   acts: (acts: string) => void;
   version: (version: string) => void;
 }
@@ -110,9 +114,9 @@ export class ConnectionVMix extends EventEmitter {
     });
   }
 
-  public async getTallyAsync(): Promise<string> {
+  public async getTallyAsync(): Promise<TallyArray> {
     return new Promise((resolve, reject) => {
-      this.once("tally", (tally: string) => {
+      this.once("tally", (tally: TallyArray) => {
         resolve(tally);
       });
       this.sendCommand("TALLY");
@@ -146,6 +150,10 @@ export class ConnectionVMix extends EventEmitter {
     this.sendCommand(`UNSUBSCRIBE ${sub}`);
   }
 
+  public sayHola(): void {
+    console.log("Hola");
+  }
+
   private processData(data: Buffer): void {
     let message = data.toString();
     let lines = message.split(LINE_ENDING);
@@ -159,7 +167,7 @@ export class ConnectionVMix extends EventEmitter {
         if (words[1] == 'OK') {
           switch (event) {
             case 'tally':
-              this.emit(event, words[2] || '');
+              this.emit(event, Tally.parseCommand(words[2] || ''));
               break;
             case 'acts':
               this.emit(event, words[2] || '');
@@ -180,5 +188,7 @@ export class ConnectionVMix extends EventEmitter {
   }
 
 }
+
+
 
 

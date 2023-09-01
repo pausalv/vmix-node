@@ -14,7 +14,7 @@ npm install vmix-node
 import { ConnectionVMix } from "vmix-node";
 
 // Create a new connection to vMix
-const vMix = new ConnectionVMix();
+const vMix = new ConnectionVMix('localhost');
 
 // Listen for connect event
 vMix.on("connect", async () => {
