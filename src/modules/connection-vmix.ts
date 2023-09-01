@@ -3,11 +3,15 @@ import { Socket } from "net";
 import { EventEmitter } from 'node:events';
 
 import { Tally, TallyArray } from "../commands/tally";
+import { Acts, ActsResponse } from "../commands/acts";
 
 const DEFAULT_HOST = "localhost";
 const DEFAULT_PORT = 8099;
 
 const LINE_ENDING = "\r\n";
+
+const COMMAND_OK = "OK";
+const COMMAND_ERROR = "ER";
 
 export enum ConnectionStates {
   DISCONNECTED,
@@ -18,7 +22,7 @@ export enum ConnectionStates {
 
 interface ConnectionVMixEventsVMixMap {
   tally: (tally: TallyArray) => void;
-  acts: (acts: string) => void;
+  acts: (acts: ActsResponse) => void;
   version: (version: string) => void;
 }
 
@@ -162,15 +166,20 @@ export class ConnectionVMix extends EventEmitter {
     lines.forEach((line) => {
       if (line.length > 0) {
         const words = line.split(" ");
-        let event = words[0].toLowerCase();
 
-        if (words[1] == 'OK') {
+        let [event, status, ...rest] = words;
+
+        event = event.toLowerCase();
+
+        this.options.debug && console.log("Event: ", event, "Status: ", status, "Rest: ", rest);
+
+        if (status == COMMAND_OK) {
           switch (event) {
             case 'tally':
-              this.emit(event, Tally.parseCommand(words[2] || ''));
+              this.emit(event, Tally.parseCommand(rest[0] || ''));
               break;
             case 'acts':
-              this.emit(event, words[2] || '');
+              this.emit(event, Acts.parseCommand(rest || ['']));
               break;
             case 'version':
               this.emit(event, words[2] || '');

@@ -8,3 +8,8 @@ export {
   TallyStates,
   TallyArray
 } from "./commands/tally";
+
+export {
+  Acts,
+  ActsResponse
+} from "./commands/acts";
