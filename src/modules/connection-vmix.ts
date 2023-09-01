@@ -130,6 +130,11 @@ export class ConnectionVMix extends EventEmitter {
   }
 
   public sendCommand(command: string): void {
+    if (!command.endsWith(LINE_ENDING)) {
+      command += LINE_ENDING;
+    }
+
+    this.options.debug && console.log("Sending command to vMix: ", command);
     this.socket.write(command + LINE_ENDING);
   }
 
@@ -174,10 +179,6 @@ export class ConnectionVMix extends EventEmitter {
     });
   }
 
-}
-
-interface TallyEvent extends Event {
-  data: string;
 }
 
 
