@@ -11,10 +11,10 @@ npm install vmix-node
 # Quick Start
 
 ```typescript
-import { ConnectionVMix } from "vmix-node";
+import { ConnectionVMix, TallyArray } from "vmix-node";
 
 // Create a new connection to vMix
-const vMix = new ConnectionVMix('localhost');
+const vMix = new ConnectionVMix();
 
 // Listen for connect event
 vMix.on("connect", async () => {
@@ -27,12 +27,11 @@ vMix.on("disconnect", () => {
 });
 
 // Listen for tally event
-vMix.on("tally", (tally: string) => {
+vMix.on("tally", (tally: TallyArray) => {
   console.log('TALLY:', tally);
 });
 
-
-(async () => { //This is for async/await
+(async () => {
   // connect to vMix
   await vMix.connectAsync();
 
@@ -41,6 +40,8 @@ vMix.on("tally", (tally: string) => {
 
   // subscribe to tally events
   vMix.subscribe("TALLY");
+
+
 })();
 ```
 
