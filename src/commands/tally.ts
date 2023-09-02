@@ -1,5 +1,3 @@
-import { Command } from './command';
-
 export enum TallyStates {
   NONE = 0,
   PROGRAM = 1,
