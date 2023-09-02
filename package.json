@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "buld-test": "npm run build && npm run test",
+    "test-build": "npm run test && npm run build",
     "test": "jest",
     "docs": "typedoc"
   },
