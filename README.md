@@ -47,11 +47,11 @@ vMix.on("tally", (tally: TallyArray) => {
 
 # Implemented Commands
 
-- [x] VERSION
-- [x] TALLY
-- [x] ACTS
-- [x] SUBSCRIBE
-- [x] UNSUBSCRIBE
-- [ ] FUNCTION
-- [ ] XML
-- [ ] XMLTEXT
+- ✅ VERSION
+- ✅ TALLY
+- ✅ ACTS
+- ✅ SUBSCRIBE
+- ✅ UNSUBSCRIBE
+- ❌ FUNCTION
+- ❌ XML
+- ❌ XMLTEXT
