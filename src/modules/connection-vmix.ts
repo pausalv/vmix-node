@@ -21,14 +21,14 @@ export enum ConnectionStates {
 
 
 interface ConnectionVMixEventsVMixMap {
-  tally: (tally: TallyArray) => void;
-  acts: (acts: ActsResponse) => void;
-  version: (version: string) => void;
+  tally: (tally: TallyArray) => void,
+  acts: (acts: ActsResponse) => void,
+  version: (version: string) => void
 }
 
 interface ConnectionVMixEventsConnectionMap {
-  connect: () => void;
-  disconnect: () => void;
+  connect: () => void,
+  disconnect: () => void
 }
 
 interface ConnectionVMixEventMap extends ConnectionVMixEventsVMixMap, ConnectionVMixEventsConnectionMap { }
@@ -154,10 +154,6 @@ export class ConnectionVMix extends EventEmitter {
     this.sendCommand(`UNSUBSCRIBE ${sub}`);
   }
 
-  public sayHola(): void {
-    console.log("Hola");
-  }
-
   private processData(data: Buffer): void {
     let message = data.toString();
     let lines = message.split(LINE_ENDING);
@@ -179,7 +175,8 @@ export class ConnectionVMix extends EventEmitter {
               this.emit(event, Tally.parseCommand(rest[0] || ''));
               break;
             case 'acts':
-              this.emit(event, Acts.parseCommand(rest || ['']));
+              const [actsEvent, ...actsRest] = rest || [''];
+              this.emit(event, Acts.parseCommand(actsEvent, actsRest));
               break;
             case 'version':
               this.emit(event, words[2] || '');

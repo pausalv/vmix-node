@@ -12,6 +12,7 @@
     "build": "tsup",
     "test-build": "npm run test && npm run build",
     "test": "jest",
+    "test-watch": "jest --watch",
     "docs": "typedoc"
   },
   "keywords": [
