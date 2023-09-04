@@ -217,3 +217,103 @@ test('parseCommand of MasterBAudio', () => {
   });
 });
 
+test('parseCommand of FadeToBlack', () => {
+  const result = Acts.parseCommand('FadeToBlack', ['1']);
+  expect(result).toEqual({
+    name: 'FadeToBlack',
+    data: {
+      active: true,
+      literal: '1'
+    }
+  });
+
+  const result2 = Acts.parseCommand('FadeToBlack', ['0']);
+  expect(result2).toEqual({
+    name: 'FadeToBlack',
+    data: {
+      active: false,
+      literal: '0'
+    }
+  });
+});
+
+test('parseCommand of Recording', () => {
+  const result = Acts.parseCommand('Recording', ['1']);
+  expect(result).toEqual({
+    name: 'Recording',
+    data: {
+      active: true,
+      literal: '1'
+    }
+  });
+
+  const result2 = Acts.parseCommand('Recording', ['0']);
+  expect(result2).toEqual({
+    name: 'Recording',
+    data: {
+      active: false,
+      literal: '0'
+    }
+  });
+});
+
+test('parseCommand of Streaming', () => {
+  const result = Acts.parseCommand('Streaming', ['1']);
+  expect(result).toEqual({
+    name: 'Streaming',
+    data: {
+      active: true,
+      literal: '1'
+    }
+  });
+
+  const result2 = Acts.parseCommand('Streaming', ['0']);
+  expect(result2).toEqual({
+    name: 'Streaming',
+    data: {
+      active: false,
+      literal: '0'
+    }
+  });
+});
+
+test('parseCommand of External', () => {
+  const result = Acts.parseCommand('External', ['1']);
+  expect(result).toEqual({
+    name: 'External',
+    data: {
+      active: true,
+      literal: '1'
+    }
+  });
+
+  const result2 = Acts.parseCommand('External', ['0']);
+  expect(result2).toEqual({
+    name: 'External',
+    data: {
+      active: false,
+      literal: '0'
+    }
+  });
+});
+
+test('parseCommand of Fullscreen', () => {
+  const result = Acts.parseCommand('Fullscreen', ['1']);
+  expect(result).toEqual({
+    name: 'Fullscreen',
+    data: {
+      active: true,
+      literal: '1'
+    }
+  });
+
+  const result2 = Acts.parseCommand('Fullscreen', ['0']);
+  expect(result2).toEqual({
+    name: 'Fullscreen',
+    data: {
+      active: false,
+      literal: '0'
+    }
+  });
+});
+

@@ -4,28 +4,29 @@
 // ✔️ are implemented but not tested with vMix
 
 /* Activators from vMix
-- ✅ Input
-- ✅ InputPreview
-- InputPlaying
-- ✅ InputVolume
+- ✅ Input 1 1
+- ✅ InputPreview 1 1
+- InputPlaying 1 1
+- ✅ InputVolume 1 0.5470082
 - InputHeadphones
-- ✅ MasterVolume
-- ✔️ MasterHeadphones
-- ✔️ BusAVolume
-- ✔️ BusBVolume
-- InputAudio
-- InputSolo
-- InputBusAAudio
-- InputBusBAudio
-- InputMasterAudio
-- ✔️ MasterAudio
-- ✔️ MasterAAudio
-- ✔️ MasterBAudio
-- FadeToBlack
-- Recording
-- Streaming
-- External
-- Fullscreen
+- ✅ MasterVolume 0.5470082
+- ✅ MasterHeadphones 0.5470082
+- ✔️ BusAVolume 0.5470082
+- ✔️ BusBVolume 0.5470082
+- InputAudio 1 1
+- InputSolo 1 1
+- InputBusAAudio 1 1
+- InputBusBAudio 1 1
+- ❗ InputBusCAudio 1 1
+- InputMasterAudio 1 1
+- ✅ MasterAudio 1
+- ✅ MasterAAudio 1
+- ✅ MasterBAudio 1
+- ✅ FadeToBlack 1
+- ✅ Recording 1
+- ✅ Streaming 1
+- ✅ External 1
+- ✅ Fullscreen 1
 */
 
 enum ActsActivators {
@@ -62,9 +63,14 @@ interface ActsType {
   BusAVolume: ActsVolumeResponse,
   BusBVolume: ActsVolumeResponse,
   MasterHeadphones: ActsVolumeResponse,
-  MasterAudio: ActsAudioResponse,
-  MasterAAudio: ActsAudioResponse,
-  MasterBAudio: ActsAudioResponse,
+  MasterAudio: ActsActiveResponse,
+  MasterAAudio: ActsActiveResponse,
+  MasterBAudio: ActsActiveResponse,
+  FadeToBlack: ActsActiveResponse,
+  Recording: ActsActiveResponse,
+  Streaming: ActsActiveResponse,
+  External: ActsActiveResponse,
+  Fullscreen: ActsActiveResponse,
   [key: string]: ActsResponse
 }
 
@@ -79,7 +85,12 @@ const acts: ActsParseFunctions = {
   MasterHeadphones: parseMasterHeadphones,
   MasterAudio: parseMasterAudio,
   MasterAAudio: parseMasterAAudio,
-  MasterBAudio: parseMasterBAudio
+  MasterBAudio: parseMasterBAudio,
+  FadeToBlack: parseFaseToBlack,
+  Recording: parseRecording,
+  Streaming: parseStreaming,
+  External: parseExternal,
+  Fullscreen: parseFullscreen
 }
 
 export abstract class Acts {
@@ -156,7 +167,7 @@ function parseInputVolume([inputNumber, volume]: string[]): ActsInputVolumeRespo
   }
 }
 
-function parseAudio([active]: string[], name: string): ActsAudioResponse {
+function parseActive([active]: string[], name: string): ActsActiveResponse {
   return {
     name,
     data: {
@@ -166,16 +177,36 @@ function parseAudio([active]: string[], name: string): ActsAudioResponse {
   }
 }
 
-function parseMasterAudio([active]: string[]): ActsAudioResponse {
-  return parseAudio([active], 'MasterAudio');
+function parseMasterAudio([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'MasterAudio');
 }
 
-function parseMasterAAudio([active]: string[]): ActsAudioResponse {
-  return parseAudio([active], 'MasterAAudio');
+function parseMasterAAudio([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'MasterAAudio');
 }
 
-function parseMasterBAudio([active]: string[]): ActsAudioResponse {
-  return parseAudio([active], 'MasterBAudio');
+function parseMasterBAudio([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'MasterBAudio');
+}
+
+function parseFaseToBlack([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'FadeToBlack');
+}
+
+function parseRecording([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'Recording');
+}
+
+function parseStreaming([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'Streaming');
+}
+
+function parseExternal([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'External');
+}
+
+function parseFullscreen([active]: string[]): ActsActiveResponse {
+  return parseActive([active], 'Fullscreen');
 }
 
 /* Interfaces & Types */
@@ -219,7 +250,7 @@ export interface ActsInputVolumeResponse extends ActsResponse {
   };
 }
 
-export interface ActsAudioResponse extends ActsResponse {
+export interface ActsActiveResponse extends ActsResponse {
   name: string,
   data: {
     literal: string
