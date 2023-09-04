@@ -1,4 +1,4 @@
-import { Socket } from "net";
+import { Socket } from 'node:net';
 
 import { EventEmitter } from 'node:events';
 
@@ -21,14 +21,14 @@ export enum ConnectionStates {
 
 
 interface ConnectionVMixEventsVMixMap {
-  tally: (tally: TallyArray) => void;
-  acts: (acts: ActsResponse) => void;
-  version: (version: string) => void;
+  tally: (tally: TallyArray) => void,
+  acts: (acts: ActsResponse) => void,
+  version: (version: string) => void
 }
 
 interface ConnectionVMixEventsConnectionMap {
-  connect: () => void;
-  disconnect: () => void;
+  connect: () => void,
+  disconnect: () => void
 }
 
 interface ConnectionVMixEventMap extends ConnectionVMixEventsVMixMap, ConnectionVMixEventsConnectionMap { }
