@@ -10,6 +10,10 @@ export {
 } from "./commands/tally";
 
 export {
-  Acts,
-  ActsResponse
+  parseActsCommand,
+  ActsResponse,
+  ActsActiveResponse,
+  ActsInputResponse,
+  ActsInputVolumeResponse,
+  ActsVolumeResponse
 } from "./commands/acts";

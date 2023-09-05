@@ -3,7 +3,8 @@ import { Socket } from 'node:net';
 import { EventEmitter } from 'node:events';
 
 import { Tally, TallyArray } from "../commands/tally";
-import { Acts, ActsResponse } from "../commands/acts";
+import { parseActsCommand } from "../commands/acts";
+import { ActsResponse } from '../commands/acts/acts-response';
 
 const DEFAULT_HOST = "localhost";
 const DEFAULT_PORT = 8099;
@@ -176,7 +177,7 @@ export class ConnectionVMix extends EventEmitter {
               break;
             case 'acts':
               const [actsEvent, ...actsRest] = rest || [''];
-              this.emit(event, Acts.parseCommand(actsEvent, actsRest));
+              this.emit(event, parseActsCommand(actsEvent, actsRest));
               break;
             case 'version':
               this.emit(event, words[2] || '');

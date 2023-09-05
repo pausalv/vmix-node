@@ -1,7 +1,7 @@
-import { Acts } from "../../src";
+import { parseActsCommand } from "../../src";
 
 test('parseCommand of Unknown command', () => {
-  const result = Acts.parseCommand('Unknown', ['1', '0.5470082']);
+  const result = parseActsCommand('Unknown', ['1', '0.5470082']);
   expect(result).toEqual({
     name: 'Unknown',
     data: {
@@ -11,7 +11,7 @@ test('parseCommand of Unknown command', () => {
 });
 
 test('parseCommand of Input', () => {
-  const result = Acts.parseCommand('Input', ['1', '0']);
+  const result = parseActsCommand('Input', ['1', '0']);
   expect(result).toEqual({
     name: 'Input',
     data: {
@@ -21,7 +21,7 @@ test('parseCommand of Input', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('Input', ['1', '1']);
+  const result2 = parseActsCommand('Input', ['1', '1']);
   expect(result2).toEqual({
     name: 'Input',
     data: {
@@ -33,7 +33,7 @@ test('parseCommand of Input', () => {
 });
 
 test('parseCommand of InputPreview', () => {
-  const result = Acts.parseCommand('InputPreview', ['1', '1']);
+  const result = parseActsCommand('InputPreview', ['1', '1']);
   expect(result).toEqual({
     name: 'InputPreview',
     data: {
@@ -43,7 +43,7 @@ test('parseCommand of InputPreview', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('InputPreview', ['1', '0']);
+  const result2 = parseActsCommand('InputPreview', ['1', '0']);
   expect(result2).toEqual({
     name: 'InputPreview',
     data: {
@@ -55,7 +55,7 @@ test('parseCommand of InputPreview', () => {
 });
 
 test('parseCommand of MasterVolume', () => {
-  const result = Acts.parseCommand('MasterVolume', ['0.5470082']);
+  const result = parseActsCommand('MasterVolume', ['0.5470082']);
   expect(result).toEqual({
     name: 'MasterVolume',
     data: {
@@ -64,7 +64,7 @@ test('parseCommand of MasterVolume', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('MasterVolume', ['0.948752']);
+  const result2 = parseActsCommand('MasterVolume', ['0.948752']);
   expect(result2).toEqual({
     name: 'MasterVolume',
     data: {
@@ -76,7 +76,7 @@ test('parseCommand of MasterVolume', () => {
 });
 
 test('parseCommand of InputVolume', () => {
-  const result = Acts.parseCommand('InputVolume', ['1', '0.5470082']);
+  const result = parseActsCommand('InputVolume', ['1', '0.5470082']);
   expect(result).toEqual({
     name: 'InputVolume',
     data: {
@@ -86,7 +86,7 @@ test('parseCommand of InputVolume', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('InputVolume', ['1', '0.948752']);
+  const result2 = parseActsCommand('InputVolume', ['1', '0.948752']);
   expect(result2).toEqual({
     name: 'InputVolume',
     data: {
@@ -98,7 +98,7 @@ test('parseCommand of InputVolume', () => {
 });
 
 test('parseCommand of BusAVolume', () => {
-  const result = Acts.parseCommand('BusAVolume', ['0.5470082']);
+  const result = parseActsCommand('BusAVolume', ['0.5470082']);
   expect(result).toEqual({
     name: 'BusAVolume',
     data: {
@@ -107,7 +107,7 @@ test('parseCommand of BusAVolume', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('BusAVolume', ['0.948752']);
+  const result2 = parseActsCommand('BusAVolume', ['0.948752']);
   expect(result2).toEqual({
     name: 'BusAVolume',
     data: {
@@ -118,7 +118,7 @@ test('parseCommand of BusAVolume', () => {
 });
 
 test('parseCommand of BusBVolume', () => {
-  const result = Acts.parseCommand('BusBVolume', ['0.5470082']);
+  const result = parseActsCommand('BusBVolume', ['0.5470082']);
   expect(result).toEqual({
     name: 'BusBVolume',
     data: {
@@ -127,7 +127,7 @@ test('parseCommand of BusBVolume', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('BusBVolume', ['0.948752']);
+  const result2 = parseActsCommand('BusBVolume', ['0.948752']);
   expect(result2).toEqual({
     name: 'BusBVolume',
     data: {
@@ -138,7 +138,7 @@ test('parseCommand of BusBVolume', () => {
 });
 
 test('parseCommand of MasterHeadphones', () => {
-  const result = Acts.parseCommand('MasterHeadphones', ['0.5470082']);
+  const result = parseActsCommand('MasterHeadphones', ['0.5470082']);
   expect(result).toEqual({
     name: 'MasterHeadphones',
     data: {
@@ -147,7 +147,7 @@ test('parseCommand of MasterHeadphones', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('MasterHeadphones', ['0.948752']);
+  const result2 = parseActsCommand('MasterHeadphones', ['0.948752']);
   expect(result2).toEqual({
     name: 'MasterHeadphones',
     data: {
@@ -158,7 +158,7 @@ test('parseCommand of MasterHeadphones', () => {
 });
 
 test('parseCommand of MasterAudio', () => {
-  const result = Acts.parseCommand('MasterAudio', ['1']);
+  const result = parseActsCommand('MasterAudio', ['1']);
   expect(result).toEqual({
     name: 'MasterAudio',
     data: {
@@ -167,7 +167,7 @@ test('parseCommand of MasterAudio', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('MasterAudio', ['0']);
+  const result2 = parseActsCommand('MasterAudio', ['0']);
   expect(result2).toEqual({
     name: 'MasterAudio',
     data: {
@@ -178,7 +178,7 @@ test('parseCommand of MasterAudio', () => {
 });
 
 test('parseCommand of MasterAAudio', () => {
-  const result = Acts.parseCommand('MasterAAudio', ['1']);
+  const result = parseActsCommand('MasterAAudio', ['1']);
   expect(result).toEqual({
     name: 'MasterAAudio',
     data: {
@@ -187,7 +187,7 @@ test('parseCommand of MasterAAudio', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('MasterAAudio', ['0']);
+  const result2 = parseActsCommand('MasterAAudio', ['0']);
   expect(result2).toEqual({
     name: 'MasterAAudio',
     data: {
@@ -198,7 +198,7 @@ test('parseCommand of MasterAAudio', () => {
 });
 
 test('parseCommand of MasterBAudio', () => {
-  const result = Acts.parseCommand('MasterBAudio', ['1']);
+  const result = parseActsCommand('MasterBAudio', ['1']);
   expect(result).toEqual({
     name: 'MasterBAudio',
     data: {
@@ -207,7 +207,7 @@ test('parseCommand of MasterBAudio', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('MasterBAudio', ['0']);
+  const result2 = parseActsCommand('MasterBAudio', ['0']);
   expect(result2).toEqual({
     name: 'MasterBAudio',
     data: {
@@ -218,7 +218,7 @@ test('parseCommand of MasterBAudio', () => {
 });
 
 test('parseCommand of FadeToBlack', () => {
-  const result = Acts.parseCommand('FadeToBlack', ['1']);
+  const result = parseActsCommand('FadeToBlack', ['1']);
   expect(result).toEqual({
     name: 'FadeToBlack',
     data: {
@@ -227,7 +227,7 @@ test('parseCommand of FadeToBlack', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('FadeToBlack', ['0']);
+  const result2 = parseActsCommand('FadeToBlack', ['0']);
   expect(result2).toEqual({
     name: 'FadeToBlack',
     data: {
@@ -238,7 +238,7 @@ test('parseCommand of FadeToBlack', () => {
 });
 
 test('parseCommand of Recording', () => {
-  const result = Acts.parseCommand('Recording', ['1']);
+  const result = parseActsCommand('Recording', ['1']);
   expect(result).toEqual({
     name: 'Recording',
     data: {
@@ -247,7 +247,7 @@ test('parseCommand of Recording', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('Recording', ['0']);
+  const result2 = parseActsCommand('Recording', ['0']);
   expect(result2).toEqual({
     name: 'Recording',
     data: {
@@ -258,7 +258,7 @@ test('parseCommand of Recording', () => {
 });
 
 test('parseCommand of Streaming', () => {
-  const result = Acts.parseCommand('Streaming', ['1']);
+  const result = parseActsCommand('Streaming', ['1']);
   expect(result).toEqual({
     name: 'Streaming',
     data: {
@@ -267,7 +267,7 @@ test('parseCommand of Streaming', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('Streaming', ['0']);
+  const result2 = parseActsCommand('Streaming', ['0']);
   expect(result2).toEqual({
     name: 'Streaming',
     data: {
@@ -278,7 +278,7 @@ test('parseCommand of Streaming', () => {
 });
 
 test('parseCommand of External', () => {
-  const result = Acts.parseCommand('External', ['1']);
+  const result = parseActsCommand('External', ['1']);
   expect(result).toEqual({
     name: 'External',
     data: {
@@ -287,7 +287,7 @@ test('parseCommand of External', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('External', ['0']);
+  const result2 = parseActsCommand('External', ['0']);
   expect(result2).toEqual({
     name: 'External',
     data: {
@@ -298,7 +298,7 @@ test('parseCommand of External', () => {
 });
 
 test('parseCommand of Fullscreen', () => {
-  const result = Acts.parseCommand('Fullscreen', ['1']);
+  const result = parseActsCommand('Fullscreen', ['1']);
   expect(result).toEqual({
     name: 'Fullscreen',
     data: {
@@ -307,7 +307,7 @@ test('parseCommand of Fullscreen', () => {
     }
   });
 
-  const result2 = Acts.parseCommand('Fullscreen', ['0']);
+  const result2 = parseActsCommand('Fullscreen', ['0']);
   expect(result2).toEqual({
     name: 'Fullscreen',
     data: {
@@ -317,3 +317,134 @@ test('parseCommand of Fullscreen', () => {
   });
 });
 
+test('parseCommand of InputPlaying', () => {
+  const result = parseActsCommand('InputPlaying', ['4', '1']);
+  expect(result).toEqual({
+    name: 'InputPlaying',
+    data: {
+      active: true,
+      inputNumber: 4,
+      literal: '4 1'
+    }
+  });
+
+  const result2 = parseActsCommand('InputPlaying', ['7', '0']);
+  expect(result2).toEqual({
+    name: 'InputPlaying',
+    data: {
+      active: false,
+      inputNumber: 7,
+      literal: '7 0'
+    }
+  });
+});
+
+test('parseCommand of InputAudio', () => {
+  const result = parseActsCommand('InputAudio', ['4', '1']);
+  expect(result).toEqual({
+    name: 'InputAudio',
+    data: {
+      active: true,
+      inputNumber: 4,
+      literal: '4 1'
+    }
+  });
+
+  const result2 = parseActsCommand('InputAudio', ['7', '0']);
+  expect(result2).toEqual({
+    name: 'InputAudio',
+    data: {
+      active: false,
+      inputNumber: 7,
+      literal: '7 0'
+    }
+  });
+});
+
+test('parseCommand of InputSolo', () => {
+  const result = parseActsCommand('InputSolo', ['4', '1']);
+  expect(result).toEqual({
+    name: 'InputSolo',
+    data: {
+      active: true,
+      inputNumber: 4,
+      literal: '4 1'
+    }
+  });
+
+  const result2 = parseActsCommand('InputSolo', ['7', '0']);
+  expect(result2).toEqual({
+    name: 'InputSolo',
+    data: {
+      active: false,
+      inputNumber: 7,
+      literal: '7 0'
+    }
+  });
+});
+
+test('parseCommand of InputBusAAudio', () => {
+  const result = parseActsCommand('InputBusAAudio', ['4', '1']);
+  expect(result).toEqual({
+    name: 'InputBusAAudio',
+    data: {
+      active: true,
+      inputNumber: 4,
+      literal: '4 1'
+    }
+  });
+
+  const result2 = parseActsCommand('InputBusAAudio', ['7', '0']);
+  expect(result2).toEqual({
+    name: 'InputBusAAudio',
+    data: {
+      active: false,
+      inputNumber: 7,
+      literal: '7 0'
+    }
+  });
+});
+
+test('parseCommand of InputBusBAudio', () => {
+  const result = parseActsCommand('InputBusBAudio', ['4', '1']);
+  expect(result).toEqual({
+    name: 'InputBusBAudio',
+    data: {
+      active: true,
+      inputNumber: 4,
+      literal: '4 1'
+    }
+  });
+
+  const result2 = parseActsCommand('InputBusBAudio', ['7', '0']);
+  expect(result2).toEqual({
+    name: 'InputBusBAudio',
+    data: {
+      active: false,
+      inputNumber: 7,
+      literal: '7 0'
+    }
+  });
+});
+
+test('parseCommand of InputMasterAudio', () => {
+  const result = parseActsCommand('InputMasterAudio', ['4', '1']);
+  expect(result).toEqual({
+    name: 'InputMasterAudio',
+    data: {
+      active: true,
+      inputNumber: 4,
+      literal: '4 1'
+    }
+  });
+
+  const result2 = parseActsCommand('InputMasterAudio', ['7', '0']);
+  expect(result2).toEqual({
+    name: 'InputMasterAudio',
+    data: {
+      active: false,
+      inputNumber: 7,
+      literal: '7 0'
+    }
+  });
+});
