@@ -1,9 +1,9 @@
 
-import { ActsActiveResponse, parseActive } from "./acts/active";
-import { ActsResponse } from "./acts/acts-response";
-import { ActsInputResponse, parseInput } from "./acts/input";
-import { ActsInputVolumeResponse, parseInputVolume } from "./acts/input-volume";
-import { ActsVolumeResponse, parseVolume } from "./acts/volume";
+import { ActsActiveResponse, parseActive } from "./active";
+import { ActsResponse } from "./acts-response";
+import { ActsInputResponse, parseInput } from "./input";
+import { ActsInputVolumeResponse, parseInputVolume } from "./input-volume";
+import { ActsVolumeResponse, parseVolume } from "./volume";
 
 export {
   ActsResponse,

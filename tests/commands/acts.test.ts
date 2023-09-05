@@ -1,4 +1,5 @@
-import { parseActsCommand } from "../../src";
+import { parseActsCommand } from "../../src/commands/acts";
+
 
 test('parseCommand of Unknown command', () => {
   const result = parseActsCommand('Unknown', ['1', '0.5470082']);

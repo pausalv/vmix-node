@@ -1,4 +1,4 @@
-import { Tally, TallyArray, TallyStates } from "../../src";
+import { Tally, TallyArray, TallyStates } from "../../src/commands/tally";
 
 
 test('parseCommand of Tally', () => {
