@@ -1,5 +1,7 @@
 # vMix library for NodeJS
 
+⚠️⚠️WORK IN PROGRESS⚠️⚠️
+
 This library allows you to control vMix from NodeJS.
 
 # Installation
